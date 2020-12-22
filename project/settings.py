@@ -125,24 +125,37 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 LOGGING = {
- 'version': 1,
- 'disable_existing_loggers': False,
- 'filters': {
- 'require_debug_false': {
- '()': 'django.utils.log.RequireDebugFalse'
- }
- },
- 'handlers': {
- 'logfile': {
- 'class': 'logging.handlers.WatchedFileHandler',
- 'filename': '/home/site/wwwroot/myapp-json.log'
- }
- },
- 'loggers': {
- 'django': {
- 'handlers': ['logfile'],
- 'level': 'INFO',
- 'propagate': True,
- }
- }
+            'version': 1,
+            'disable_existing_loggers': False,
+            'formatters': {
+                     'standard': {
+                     'format': '[%(levelname)s] %(asctime)s %(name)s: %(message)s',
+                     'datefmt' : "%d/%b/%Y %H:%M:%S"
+                 },
+          },
+            'filters': 
+            {
+                'require_debug_false': 
+                    {
+                        '()': 'django.utils.log.RequireDebugFalse'
+                    }
+            },
+            'handlers': 
+            {
+                'logfile': 
+                    {
+                        'class': 'logging.handlers.WatchedFileHandler',
+                        'filename': '/home/site/wwwroot/myapp-json.log',
+                        'formatter': 'standard' 
+                    }
+            },
+            'loggers': 
+            {
+                 'django': 
+                    {
+                        'handlers': ['logfile'],
+                        'level': 'CRITICAL',
+                        'propagate': True,
+                    }
+            }
  }
