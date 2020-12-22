@@ -135,7 +135,7 @@ LOGGING = {
  'handlers': {
  'logfile': {
  'class': 'logging.handlers.WatchedFileHandler',
- 'filename': '/home/site/wwwroot/myapp.log'
+ 'filename': '/home/site/wwwroot/myapp-json.log'
  }
  },
  'loggers': {

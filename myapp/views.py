@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import logging
 
@@ -10,3 +10,12 @@ def homePageView(request):
 def helloPageView(request):
     logger.debug("More Hello")
     return render(request,'home/hello2.html',{'msg':'More Hello'})
+
+def jsonSample(request):
+    data = {
+        'name': 'Vitor',
+        'location': 'Finland',
+        'is_active': True,
+        'count': 28
+    }
+    return JsonResponse(data)
