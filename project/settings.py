@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import logging.handlers
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -144,7 +144,7 @@ LOGGING = {
             {
                 'logfile': 
                     {
-                        'class': 'logging.handlers.StreamHandler',
+                        'class': 'logging.handlers.WatchedFileHandler',
                         'filename': '/home/site/wwwroot/app-log.txt', 
                         'formatter': 'standard' 
                     }
