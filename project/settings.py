@@ -129,7 +129,7 @@ LOGGING = {
             'disable_existing_loggers': False,
             'formatters': {
                      'standard': {
-                     'format': '[%(levelname)s] %(asctime)s %(name)s: %(message)s',
+                     'format': '[%(levelname)s] %(asctime)s - %(name)s - %(message)s',
                      'datefmt' : "%d/%b/%Y %H:%M:%S"
                  },
           },
@@ -144,8 +144,8 @@ LOGGING = {
             {
                 'logfile': 
                     {
-                        'class': 'logging.handlers.WatchedFileHandler',
-                        'filename': os.path.dirname('custom-logfiles/log-file.log'), 
+                        'class': 'logging.handlers.FileHandler',
+                        'filename': '/home/site/wwwroot/app-log.txt', 
                         'formatter': 'standard' 
                     }
             },
