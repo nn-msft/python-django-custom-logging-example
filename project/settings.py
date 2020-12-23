@@ -144,7 +144,7 @@ LOGGING = {
             {
                 'logfile': 
                     {
-                        'class': 'logging.handlers.FileHandler',
+                        'class': 'logging.handlers.StreamHandler',
                         'filename': '/home/site/wwwroot/app-log.txt', 
                         'formatter': 'standard' 
                     }
