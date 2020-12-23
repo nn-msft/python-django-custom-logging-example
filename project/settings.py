@@ -145,7 +145,7 @@ LOGGING = {
                 'logfile': 
                     {
                         'class': 'logging.handlers.WatchedFileHandler',
-                        'filename': '/home/site/wwwroot/app-log.txt', 
+                        'filename': '/home/site/wwwroot/app-log.log', 
                         'formatter': 'standard' 
                     }
             },
