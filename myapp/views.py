@@ -2,7 +2,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import logging
 
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+logger = logging.getLogger('django')
 def homePageView(request):
     
     logger.critical("Hello World Visited!-------CRITICAL LEVEL")
