@@ -126,7 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGGING = {
             'version': 1,
-            'disable_existing_loggers': True,
+            'disable_existing_loggers': False,
             'formatters': {
                      'standard': {
                      'format': '[%(levelname)s] %(asctime)s - %(name)s - %(message)s',
@@ -145,7 +145,7 @@ LOGGING = {
                 'logfile': 
                     {
                         'class': 'logging.handlers.WatchedFileHandler',
-                        #'filename': '/home/site/wwwroot/app-log-1.log', 
+                        'filename': '/home/site/wwwroot/app-log-1.log', 
                         'formatter': 'standard' 
                     }
             },
