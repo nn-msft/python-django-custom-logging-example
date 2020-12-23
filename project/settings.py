@@ -144,8 +144,7 @@ LOGGING = {
             {
                 'logfile': 
                     {
-                        'class': 'logging.handlers.WatchedFileHandler',
-                        'filename': '/home/site/wwwroot/myapp-json.log',
+                        'class': 'logging.handlers.WatchedFileHandler',                        
                         'formatter': 'standard' 
                     }
             },
