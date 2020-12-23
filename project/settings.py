@@ -144,7 +144,8 @@ LOGGING = {
             {
                 'logfile': 
                     {
-                        'class': 'logging.handlers.WatchedFileHandler',                        
+                        'class': 'logging.handlers.WatchedFileHandler',
+                        'filename': os.path.dirname('custom-logfiles/log-file.log'), 
                         'formatter': 'standard' 
                     }
             },
