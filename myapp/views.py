@@ -7,7 +7,7 @@ logger = logging.getLogger('django')
 def homePageView(request):
     
     logger.critical("Hello World Visited!")
-    return render(request, 'home/index.html', {'msg':'Hello World Again02'})
+    return render(request, 'home/index.html', {'msg':'Hello World Again03'})
 
 def helloPageView(request):
     
