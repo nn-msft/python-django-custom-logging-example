@@ -1,37 +1,74 @@
-# Django
-1. Create a **virtual environment** with any python version >=3.
-    - If you are using Windows:
-        ```shell
-            python -m venv env
-        ```
-    - If you are using Linux:
-        ```shell
-            python3 -m venv env
-       ```
-2. Activate the virtual environment.
-    - If you are using Windows in cmd:
-        ```shell
-            env\Scripts\activate.bat
-        ```
-    - If you are using Linux
-        ```shell
-            source env/bin/activate
-        ```
-3. Once the virtual environment is activated, install **requirements.txt**.
-    ```shell
-        pip install -r requirements.txt
-    ```
-4. Run `python manage.py migrate` to apply migrations for all django apps.
-5. Run `python manage.py collectstatic` to collect statics.
-6. Run the application.
-    - If you are using Windows:
-        ```shell
-            python manage.py runserver
-        ```
-    - If you are using Linux:
-        ```shell
-            python3 manage.py runserver
-        ```
-    > The application will be listening by default on **http://127.0.0.1:8000/**
-
-7. To deploy this sample to Azure Web App Linux review the following recommendations: [Oryx Django Tips](https://github.com/microsoft/Oryx/wiki/Django-Tips)
+STEP-1
+ 
+	· Add the following code to settings.py file.
+	 
+import logging.handlers
+ 
+LOGGING = {
+            'version': 1,
+            'disable_existing_loggers': False,
+            'formatters': {
+                     'standard': {
+                     'format': '[%(levelname)s] %(asctime)s - %(name)s - %(message)s',
+                     'datefmt' : "%d/%b/%Y %H:%M:%S"
+                 },
+          },
+            'filters': 
+            {
+                'require_debug_false': 
+                    {
+                        '()': 'django.utils.log.RequireDebugFalse'
+                    }
+            },
+            'handlers': 
+            {
+                'logfile': 
+                    {
+                        'class': 'logging.handlers.WatchedFileHandler',
+                        'filename': '/home/site/wwwroot/app-log-1.log', 
+                        'formatter': 'standard' 
+                    }
+            },
+            'loggers': 
+            {
+                 'django': 
+                    {
+                        'handlers': ['logfile'],
+                        'level': 'CRITICAL',
+                        'propagate': True,
+                    }
+            }
+ }
+ 
+ 
+	· In case you need your filename to be different, edit the part highlighted in ‘yellow’ color.
+	· Make sure to add the below code or modify the existing ‘DEBUG’ parameter to true, otherwise logging won’t work.
+DEBUG = True
+ 
+STEP-2
+ 
+	· Add the following code inside the files serving as ‘View’ of your Django application.
+ 
+import logging
+logger = logging.getLogger('django')
+ 
+	· Add below code inside the functions which we are interested to troubleshoot.
+	· Make sure to convert Json response to string before modifying it with ‘logger.critical’
+ logger.critical("More Hello")
+ 
+	· Re-deploy the application with the above changes and reproduce the issue.
+	· Later, we can download the file using FTP from the location mentioned in the filename settings.
+ 
+ADDITIONAL INFORMATION
+ 
+	· In case you want the content from logger statements to be written to default docker logs which we pulled earlier from api/dump endpoint, instantiate the ‘logger’ in the ‘View’ file with the following statement and remove or comment out logger = logging.getLogger('django') code.
+logger=logging.getLogger(__name__)
+ 
+ 
+FUTURE ADVISE
+Since we are adding the DEBUG=True only for troubleshooting purposes, I would advise to turn it off later by modifying it to DEBUG = os.environ[‘DEBUG’] and set the following in your App Settings under the configuration blade in the portal. 
+ 
+key: DEBUG 
+value: 0
+ 
+Source- https://docs.microsoft.com/en-us/azure/app-service/configure-language-python#production-settings-for-django-apps![image](https://user-images.githubusercontent.com/75340668/117064556-556aea80-acf4-11eb-8105-cfbabfe5497b.png)
