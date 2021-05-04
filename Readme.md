@@ -41,7 +41,7 @@ LOGGING = {
  }
  
  
-In case you need your filename to be different, edit the part highlighted in ‘yellow’ color.
+In case you need your filename to be different, edit 'filename'.
 Make sure to add the below code or modify the existing ‘DEBUG’ parameter to true, otherwise logging won’t work.
 
 DEBUG = True
